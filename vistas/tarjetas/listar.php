@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Tarjetas RFID</title>
+</head>
+
+<body>
+    <h1>Tarjetas RFID</h1>
+    <p><a href="../index.php">Inicio</a></p>
+
+    <?php if ($mensaje !== '') { ?>
+        <p><?= htmlspecialchars($mensaje) ?></p>
+    <?php } ?>
+
+    <?php if ($error !== '') { ?>
+        <p><?= htmlspecialchars($error) ?></p>
+    <?php } ?>
+
+    <h2>Asignar tarjeta</h2>
+    <form action="tarjetas.php" method="post">
+        <input type="hidden" name="accion" value="guardar">
+        <input type="hidden" name="id" value="0">
+        <p>
+            <label for="codigo_rfid">Código RFID</label><br>
+            <input id="codigo_rfid" name="codigo_rfid" maxlength="32" required>
+        </p>
+        <p>
+            <label for="id_estudiante">Estudiante</label><br>
+            <select id="id_estudiante" name="id_estudiante" required>
+                <option value="">Seleccione un estudiante</option>
+                <?php foreach ($estudiantes as $estudiante): ?>
+                    <option value="<?= (int) $estudiante['id'] ?>">
+                        <?= htmlspecialchars($estudiante['cedula'] . ' - ' . $estudiante['nombres']) ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+        </p>
+        <p>
+            <label for="estado">Estado</label><br>
+            <select id="estado" name="estado">
+                <option value="ACTIVO">ACTIVO</option>
+                <option value="INACTIVO">INACTIVO</option>
+            </select>
+        </p>
+        <button type="submit">Asignar</button>
+    </form>
+
+    <h2>Lista de tarjetas</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Código RFID</th>
+                <th>Estudiante</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($tarjetas as $fila): ?>
+                <tr>
+                    <td><?= (int) $fila['id'] ?></td>
+                    <td><?= htmlspecialchars($fila['codigo_rfid']) ?></td>
+                    <td><?= htmlspecialchars($fila['estudiante']) ?></td>
+                    <td><?= htmlspecialchars($fila['estado']) ?></td>
+                    <td>
+                        <a href="tarjetas.php?id=<?= (int) $fila['id'] ?>">Editar</a>
+                        <?php if ($fila['estado'] === 'ACTIVO') { ?>
+                            <form action="tarjetas.php" method="post">
+                                <input type="hidden" name="accion" value="desactivar">
+                                <input type="hidden" name="id" value="<?= (int) $fila['id'] ?>">
+                                <button type="submit">Desactivar</button>
+                            </form>
+                        <?php } ?>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</body>
+
+</html>

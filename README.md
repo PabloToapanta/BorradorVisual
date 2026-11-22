@@ -19,3 +19,7 @@ Abrir la página inicial en `http://localhost/estudio/proyecto_final_visual/` cu
 ## Módulo de estudiantes
 
 Abrir `http://localhost/estudio/proyecto_final_visual/controladores/estudiantes.php` para listar, registrar, editar y desactivar estudiantes. La desactivación conserva al estudiante en la base de datos.
+
+## Módulo de tarjetas
+
+Abrir `http://localhost/estudio/proyecto_final_visual/controladores/tarjetas.php` para listar, asignar, editar y desactivar tarjetas RFID.
