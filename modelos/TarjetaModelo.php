@@ -14,11 +14,11 @@ class TarjetaModelo
     public function listar(int $id): mysqli_result
     {
         $sql = 'SELECT t.id, t.codigo_rfid, t.id_estudiante, t.estado, e.nombres AS estudiante '
-            . 'FROM tarjeta t JOIN estudiante e ON e.id = t.id_estudiante';
+            . 'FROM tarjeta t, estudiante e WHERE e.id = t.id_estudiante';
         if ($id === 0) {
             $sql .= ' ORDER BY t.codigo_rfid';
         } else {
-            $sql .= ' WHERE t.id = ?';
+            $sql .= ' AND t.id = ?';
         }
 
         $sentencia = $this->conexion->prepare($sql);
