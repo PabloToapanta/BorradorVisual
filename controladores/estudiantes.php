@@ -1,5 +1,12 @@
 <?php
 
+// Solo un administrador con sesión iniciada puede usar este módulo.
+session_start();
+if (!isset($_SESSION['admin_id'])) {
+    header('Location: administradores.php');
+    exit;
+}
+
 require_once __DIR__ . '/../modelos/EstudianteModelo.php';
 
 // El modelo realiza las consultas a la tabla estudiante.

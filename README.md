@@ -23,3 +23,7 @@ Abrir `http://localhost/estudio/proyecto_final_visual/controladores/estudiantes.
 ## Módulo de tarjetas
 
 Abrir `http://localhost/estudio/proyecto_final_visual/controladores/tarjetas.php` para listar, asignar, editar y desactivar tarjetas RFID.
+
+## Administrador
+
+Abrir `http://localhost/estudio/proyecto_final_visual/controladores/administradores.php` para iniciar sesión. El panel permite entrar a estudiantes y tarjetas; cerrar sesión quita el acceso a ambos módulos. La tabla y la cuenta inicial siguen siendo las de `SistemaEstudiantil.sql`.
