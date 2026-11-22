@@ -21,6 +21,7 @@ Este repositorio contiene la versión web del sistema de control de acceso. Mant
 
 - Leer formularios con `$_POST['campo'] ?? valor` y parámetros de consulta con `$_GET['campo'] ?? valor`. No usar `$_SERVER` para decidir las acciones.
 - Mantener un flujo directo como en `controladores/estudiantes.php`: procesar la acción, consultar los datos y cargar la vista.
+- Añadir comentarios breves en los controladores para explicar cada bloque principal.
 - No agregar comprobaciones de tipo o longitud como `is_string()`, `ctype_digit()` o `mb_strlen()` salvo que se acuerde para ese módulo.
 
 ## Vistas
