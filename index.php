@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Sistema de control de acceso</title>
+    <link rel="stylesheet" href="assets/css/estilos.css">
 </head>
 <body>
     <img src="images/banner-uta.png" alt="Banner de la Universidad Técnica de Ambato">

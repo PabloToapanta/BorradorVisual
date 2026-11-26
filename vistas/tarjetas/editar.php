@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Editar tarjeta RFID</title>
+    <link rel="stylesheet" href="../assets/css/estilos.css">
 </head>
 
 <body>
