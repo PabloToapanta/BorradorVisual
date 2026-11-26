@@ -34,7 +34,12 @@
         <a href="historial.php">Limpiar</a>
     </form>
 
-    <table border="1">
+    <p>
+        <label for="buscarAcceso">Buscar en los accesos mostrados</label><br>
+        <input type="text" id="buscarAcceso" placeholder="Fecha, código, estudiante o resultado">
+    </p>
+
+    <table border="1" id="tablaAccesos">
         <thead>
             <tr>
                 <th>Fecha y hora</th>
@@ -54,6 +59,18 @@
             <?php endforeach; ?>
         </tbody>
     </table>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $("#buscarAcceso").on("keyup", function () {
+            var texto = $(this).val().toLowerCase();
+
+            $("#tablaAccesos tbody tr").each(function () {
+                var datos = $(this).text().toLowerCase();
+                $(this).toggle(datos.indexOf(texto) > -1);
+            });
+        });
+    </script>
 </body>
 
 </html>
