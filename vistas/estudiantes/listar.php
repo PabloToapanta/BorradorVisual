@@ -25,7 +25,8 @@
         <input type="hidden" name="id" value="0">
         <p>
             <label for="cedula">Cédula</label><br>
-            <input id="cedula" name="cedula" maxlength="10" required>
+            <input id="cedula" name="cedula" type="text" inputmode="numeric"
+                maxlength="10" pattern="[0-9]{10}" required>
         </p>
         <p>
             <label for="nombres">Nombres</label><br>
