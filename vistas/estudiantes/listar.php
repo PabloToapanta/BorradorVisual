@@ -38,7 +38,11 @@
     </form>
 
     <h2>Lista de estudiantes</h2>
-    <table border="1" >
+    <p>
+        <label for="buscador">Buscar por cédula, nombre o carrera</label><br>
+        <input type="search" id="buscador">
+    </p>
+    <table id="tablaEstudiantes" border="1">
         <thead>
             <tr>
                 <th>ID</th>
@@ -71,6 +75,8 @@
             <?php endforeach; ?>
         </tbody>
     </table>
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/js/estudiantes.js"></script>
 </body>
 
 </html>
