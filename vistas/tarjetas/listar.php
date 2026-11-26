@@ -48,17 +48,27 @@
     </form>
 
     <h2>Lista de tarjetas</h2>
-    <table border="1">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Código RFID</th>
-                <th>Estudiante</th>
-                <th>Estado</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
+
+    <p>
+        <input type="text" id="buscador" placeholder="Buscar por código o estudiante...">
+        <select id="filtroEstado">
+            <option value="">Todos</option>
+            <option value="ACTIVO">ACTIVO</option>
+            <option value="INACTIVO">INACTIVO</option>
+        </select>
+    </p>
+
+    <table border="1" id="tablaTarjetas">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Código RFID</th>
+            <th>Estudiante</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
             <?php foreach ($tarjetas as $fila): ?>
                 <tr>
                     <td><?= (int) $fila['id'] ?></td>
@@ -79,6 +89,8 @@
             <?php endforeach; ?>
         </tbody>
     </table>
+        <script src="../assets/js/jquery.min.js"></script>
+        <script src="../assets/js/tarjetas.js"></script>
 </body>
 
 </html>
