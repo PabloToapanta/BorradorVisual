@@ -9,7 +9,7 @@
 
 <body>
     <h1>Historial de accesos</h1>
-    <p><a href="administradores.php">Panel</a></p>
+    <p><a href="administradores.php">Volver al panel de administrador</a></p>
 
     <form action="historial.php" method="get">
         <p>

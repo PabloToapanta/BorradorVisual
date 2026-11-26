@@ -10,6 +10,7 @@
 <body>
 <img src="../images/banner-uta.png" alt="Banner de la Universidad Técnica de Ambato" width="100%">    <h1>Lectura RFID</h1>
     <p><a href="../index.php">Inicio</a></p>
+    <p><a href="administradores.php">Volver al panel de administrador</a></p>
 
     <form action="accesos.php" method="post">
         <input type="hidden" name="accion" value="leer">

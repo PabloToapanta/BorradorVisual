@@ -10,6 +10,7 @@
 <body>
     <h1>Tarjetas RFID</h1>
     <p><a href="../index.php">Inicio</a></p>
+    <p><a href="administradores.php">Volver al panel de administrador</a></p>
 
     <?php if ($mensaje !== '') { ?>
         <p><?= htmlspecialchars($mensaje) ?></p>
