@@ -21,12 +21,26 @@ if ($accion === 'guardar') {
     $idEstudiante = (int) ($_POST['id_estudiante'] ?? 0);
     $estado = $_POST['estado'] ?? 'ACTIVO';
 
-    if ($id === 0) {
-        $modelo->registrar($codigoRfid, $idEstudiante, $estado);
-        header('Location: tarjetas.php?mensaje=registrada');
-    } else {
-        $modelo->actualizar($id, $codigoRfid, $idEstudiante, $estado);
-        header('Location: tarjetas.php?mensaje=actualizada');
+    // Al editar, no se cuenta la propia tarjeta como una segunda asignación.
+    if ($modelo->estudianteTieneTarjeta($idEstudiante, $id)) {
+        header('Location: tarjetas.php?mensaje=estudiante_con_tarjeta');
+        exit;
+    }
+
+    // Un código RFID no puede repetirse, aunque se seleccione otro estudiante.
+    try {
+        if ($id === 0) {
+            $modelo->registrar($codigoRfid, $idEstudiante, $estado);
+            header('Location: tarjetas.php?mensaje=registrada');
+        } else {
+            $modelo->actualizar($id, $codigoRfid, $idEstudiante, $estado);
+            header('Location: tarjetas.php?mensaje=actualizada');
+        }
+    } catch (mysqli_sql_exception $excepcion) {
+        if ($excepcion->getCode() !== 1062) {
+            throw $excepcion;
+        }
+        header('Location: tarjetas.php?mensaje=duplicada');
     }
     exit;
 }
@@ -47,6 +61,12 @@ $mensajes = [
 ];
 $mensaje = $mensajes[$_GET['mensaje'] ?? ''] ?? '';
 $error = '';
+if (($_GET['mensaje'] ?? '') === 'duplicada') {
+    $error = 'Esta tarjeta ya está registrada. No se puede volver a asignar.';
+}
+if (($_GET['mensaje'] ?? '') === 'estudiante_con_tarjeta') {
+    $error = 'Este estudiante ya tiene una tarjeta asignada. Solo puede tener una.';
+}
 
 // Los estudiantes llenan el selector de los formularios de tarjetas.
 $modeloEstudiante = new EstudianteModelo();
