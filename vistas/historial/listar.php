@@ -35,6 +35,10 @@
     </form>
 
     <p>
+        <a href="reportes.php?fecha_inicio=<?= urlencode($fechaInicio) ?>&amp;fecha_fin=<?= urlencode($fechaFin) ?>&amp;id_estudiante=<?= $idEstudiante ?>">Generar PDF con estos filtros</a>
+    </p>
+
+    <p>
         <label for="buscarAcceso">Buscar en los accesos mostrados</label><br>
         <input type="text" id="buscarAcceso" placeholder="Fecha, código, estudiante o resultado">
     </p>
