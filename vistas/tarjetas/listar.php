@@ -59,7 +59,16 @@
     </p>
 
     <table border="1" id="tablaTarjetas">
-        <tbody>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Código RFID</th>
+            <th>Estudiante</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
             <?php foreach ($tarjetas as $fila): ?>
                 <tr>
                     <td><?= (int) $fila['id'] ?></td>
@@ -80,6 +89,38 @@
             <?php endforeach; ?>
         </tbody>
     </table>
+    
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            // Filtra por texto y por estado al mismo tiempo
+            function filtrarTabla() {
+                var texto = $("#buscador").val().toLowerCase();
+                var estado = $("#filtroEstado").val();
+
+                $("#tablaTarjetas tbody tr").each(function () {
+                    var fila = $(this);
+                    var datos = fila.find("td:eq(1), td:eq(2)").text().toLowerCase();
+                    var estadoFila = fila.find("td:eq(3)").text().trim();
+
+                    var coincideTexto = datos.indexOf(texto) > -1;
+                    var coincideEstado = estado === "" || estadoFila === estado;
+
+                    fila.toggle(coincideTexto && coincideEstado);
+                });
+            }
+
+            $("#buscador").on("keyup", filtrarTabla);
+            $("#filtroEstado").on("change", filtrarTabla);
+
+            // Resalta la fila al hacer clic
+            $("#tablaTarjetas tbody").on("click", "tr", function () {
+                $(this).css("background-color", "#dbeafe")
+                       .siblings().css("background-color", "");
+            });
+        });
+    </script>
 </body>
 
 </html>
