@@ -37,14 +37,15 @@ class EstudianteModelo
         $sentencia->execute();
     }
 
-    public function actualizar(int $id, string $cedula, string $nombres, string $carrera): void
-    {
-        $sentencia = $this->conexion->prepare(
-            'UPDATE estudiante SET cedula = ?, nombres = ?, carrera = ? WHERE id = ?'
-        );
-        $sentencia->bind_param('sssi', $cedula, $nombres, $carrera, $id);
-        $sentencia->execute();
-    }
+    public function actualizar(int $id, string $nombres, string $carrera): void
+{
+    $sentencia = $this->conexion->prepare(
+        'UPDATE estudiante SET nombres = ?, carrera = ? WHERE id = ?'
+    );
+
+    $sentencia->bind_param('ssi', $nombres, $carrera, $id);
+    $sentencia->execute();
+}
 
     public function desactivar(int $id): void
     {

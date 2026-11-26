@@ -13,29 +13,46 @@ require_once __DIR__ . '/../modelos/EstudianteModelo.php';
 $modelo = new EstudianteModelo();
 $accion = $_POST['accion'] ?? '';
 
-// El formulario usa la misma acción para registrar (ID 0) o actualizar.
+// Registrar o actualizar un estudiante.
 if ($accion === 'guardar') {
+
     $id = (int) ($_POST['id'] ?? 0);
-    $cedula = trim($_POST['cedula'] ?? '');
     $nombres = trim($_POST['nombres'] ?? '');
     $carrera = trim($_POST['carrera'] ?? '');
 
-    // La cédula debe tener exactamente diez dígitos antes de guardar.
-    if (preg_match('/^[0-9]{10}$/', $cedula) !== 1) {
-        $url = $id > 0
-            ? 'estudiantes.php?id=' . $id . '&error=cedula'
-            : 'estudiantes.php?error=cedula';
-        header('Location: ' . $url);
-        exit;
-    }
-
     if ($id === 0) {
-        $modelo->registrar($cedula, $nombres, $carrera);
-        header('Location: estudiantes.php?mensaje=registrado');
+
+        // Registrar estudiante.
+        $cedula = trim($_POST['cedula'] ?? '');
+
+        // Validar el formato de la cédula.
+        if (preg_match('/^[0-9]{10}$/', $cedula) !== 1) {
+            header('Location: estudiantes.php?error=cedula');
+            exit;
+        }
+
+        try {
+            $modelo->registrar($cedula, $nombres, $carrera);
+
+            header('Location: estudiantes.php?mensaje=registrado');
+        } catch (mysqli_sql_exception $e) {
+
+            if ($e->getCode() === 1062) {
+                header('Location: estudiantes.php?error=duplicada');
+            } else {
+                header('Location: estudiantes.php?error=registro');
+            }
+        }
+
+        exit;
     } else {
-        $modelo->actualizar($id, $cedula, $nombres, $carrera);
+
+        // Actualizar únicamente nombres y carrera.
+        $modelo->actualizar($id, $nombres, $carrera);
+
         header('Location: estudiantes.php?mensaje=actualizado');
     }
+
     exit;
 }
 
@@ -54,9 +71,13 @@ $mensajes = [
     'desactivado' => 'Estudiante desactivado.',
 ];
 $mensaje = $mensajes[$_GET['mensaje'] ?? ''] ?? '';
-$error = ($_GET['error'] ?? '') === 'cedula'
-    ? 'La cédula debe tener exactamente 10 dígitos numéricos.'
-    : '';
+$errores = [
+    'cedula' => 'La cédula debe tener exactamente 10 dígitos numéricos.',
+    'duplicada' => 'Ya existe un estudiante con esa cédula.',
+    'registro' => 'No se pudo registrar al estudiante.'
+];
+
+$error = $errores[$_GET['error'] ?? ''] ?? '';
 $id = (int) ($_GET['id'] ?? 0);
 
 // Un ID en la URL abre el formulario de edición con los datos actuales.
