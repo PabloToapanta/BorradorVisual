@@ -7,7 +7,7 @@
 </head>
 
 <body>
-    <h1>Lectura RFID</h1>
+<img src="../images/banner-uta.png" alt="Banner de la Universidad Técnica de Ambato" width="100%">    <h1>Lectura RFID</h1>
     <p><a href="../index.php">Inicio</a></p>
 
     <form action="accesos.php" method="post">
