@@ -11,12 +11,17 @@
     <h1>Editar estudiante</h1>
     <p><a href="estudiantes.php">Volver a estudiantes</a></p>
 
+    <?php if ($error !== '') { ?>
+        <p><?= htmlspecialchars($error) ?></p>
+    <?php } ?>
+
     <form action="estudiantes.php" method="post">
         <input type="hidden" name="accion" value="guardar">
         <input type="hidden" name="id" value="<?= (int) $estudiante['id'] ?>">
         <p>
             <label for="cedula">Cédula</label><br>
-            <input id="cedula" name="cedula" maxlength="10" required
+            <input id="cedula" name="cedula" type="text" inputmode="numeric"
+                maxlength="10" pattern="[0-9]{10}" required
                 value="<?= htmlspecialchars($estudiante['cedula']) ?>">
         </p>
         <p>
