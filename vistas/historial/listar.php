@@ -34,7 +34,12 @@
         <a href="historial.php">Limpiar</a>
     </form>
 
-    <table border="1">
+    <p>
+        <label for="buscarAcceso">Buscar en los accesos mostrados</label><br>
+        <input type="text" id="buscarAcceso" placeholder="Fecha, código, estudiante o resultado">
+    </p>
+
+    <table border="1" id="tablaAccesos">
         <thead>
             <tr>
                 <th>Fecha y hora</th>
@@ -54,6 +59,9 @@
             <?php endforeach; ?>
         </tbody>
     </table>
+
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/js/accesos.js"></script>
 </body>
 
 </html>
