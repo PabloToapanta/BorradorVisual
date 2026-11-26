@@ -1,0 +1,97 @@
+/* Configuración general */
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f5f7;
+    color: #252525;
+    width: 1100px;
+    margin: 25px auto;
+}
+
+/* Títulos */
+h1 {
+    color: #5c0c16;
+    border-bottom: 2px solid #0e0305;
+    padding-bottom: 12px;
+}
+
+h2 {
+    margin-top: 25px;
+}
+
+/* Enlaces */
+a {
+    color: #460e15;
+    text-decoration: none;
+}
+
+
+
+/* Formularios */
+label {
+    font-weight: bold;
+}
+
+input, select {
+    padding: 9px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 5px;
+    font: inherit;
+}
+
+/* Botones */
+button, .boton {
+    background: #67141f;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: inline-block;
+    font: inherit;
+}
+
+button, .boton {
+    background: #681622;
+    text-decoration: none;
+}
+
+/* Tablas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    margin-top: 15px;
+}
+
+th {
+    background: #731f1f;
+    color: rgb(249, 249, 249);
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+
+
+/* Contenedores */
+.contenedor {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+/* Estados */
+.activo {
+    color: #16803d;
+    font-weight: bold;
+}
+
+.inactivo {
+    color: #b91c1c;
+    font-weight: bold;
+}
