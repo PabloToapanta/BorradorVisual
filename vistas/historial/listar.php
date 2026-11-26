@@ -60,17 +60,8 @@
         </tbody>
     </table>
 
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script>
-        $("#buscarAcceso").on("keyup", function () {
-            var texto = $(this).val().toLowerCase();
-
-            $("#tablaAccesos tbody tr").each(function () {
-                var datos = $(this).text().toLowerCase();
-                $(this).toggle(datos.indexOf(texto) > -1);
-            });
-        });
-    </script>
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/js/accesos.js"></script>
 </body>
 
 </html>
