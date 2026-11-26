@@ -10,6 +10,7 @@
 <body>
     <h1>Editar estudiante</h1>
     <p><a href="estudiantes.php">Volver a estudiantes</a></p>
+    <p><a href="administradores.php">Volver al panel de administrador</a></p>
 
     <?php if ($error !== '') { ?>
         <p><?= htmlspecialchars($error) ?></p>

@@ -10,6 +10,7 @@
 <body>
     <h1>Editar tarjeta RFID</h1>
     <p><a href="tarjetas.php">Volver a tarjetas</a></p>
+    <p><a href="administradores.php">Volver al panel de administrador</a></p>
 
     <form action="tarjetas.php" method="post">
         <input type="hidden" name="accion" value="guardar">
