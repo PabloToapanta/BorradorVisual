@@ -29,6 +29,16 @@ class TarjetaModelo
         return $sentencia->get_result();
     }
 
+    public function estudianteTieneTarjeta(int $idEstudiante, int $idTarjeta): bool
+    {
+        $sentencia = $this->conexion->prepare(
+            'SELECT id FROM tarjeta WHERE id_estudiante = ? AND id <> ? LIMIT 1'
+        );
+        $sentencia->bind_param('ii', $idEstudiante, $idTarjeta);
+        $sentencia->execute();
+        return $sentencia->get_result()->num_rows > 0;
+    }
+
     public function registrar(string $codigoRfid, int $idEstudiante, string $estado): void
     {
         $sentencia = $this->conexion->prepare(
