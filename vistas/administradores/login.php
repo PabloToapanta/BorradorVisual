@@ -7,6 +7,7 @@
 </head>
 
 <body>
+    <img src="../images/banner-uta.png" alt="Banner de la Universidad Técnica de Ambato">
     <h1>Iniciar sesión de administrador</h1>
     <p><a href="../index.php">Inicio</a></p>
 
